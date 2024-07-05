@@ -31,6 +31,9 @@ export class Player{
         this.draw();
         this.position.y += this.speed.y;
 
+        // only in part 4 movement
+        this.position.x += this.speed.x
+
 
         // this.speed.y += gravity;
         if (this.position.y+ this.height + this.speed.y <= canvas.height) {   
