@@ -15,7 +15,7 @@ window.addEventListener('keydown', (e)=> {
 
     switch (e.code) {
         case 'ArrowUp':
-            console.log('up')
+            // console.log('up')
             player.speed.y -=10;
             break;
         case 'ArrowDown':
@@ -45,7 +45,7 @@ window.addEventListener('keyup', (e)=> {
 
     switch (e.code) {
         case 'ArrowUp':
-            console.log('up')
+            // console.log('up')
             break;
         case 'ArrowDown':
             // console.log('down')

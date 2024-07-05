@@ -1,6 +1,7 @@
-import { player,} from './player.js';
+import { Player, player,} from './player.js';
 import { ctx, canvas} from './main.js';
 import { keys } from './move.js';
+import { platform } from './bgs.js';
 
 
 
@@ -13,6 +14,7 @@ function animate() {
     
     
     player.update();
+    platform.draw();
 
     // only in part 4 movment
     if (keys.right.pressed) {
@@ -24,7 +26,15 @@ function animate() {
         player.speed.x = 0;
     }
 
- 
+    // CHECK COLITION
+    if (
+        player.position.y + player.height <= platform.position.y &&
+        player.position.y + player.height + player.speed.y >= platform.position.y &&
+        player.position.x + player.width >= platform.position.x &&
+        player.position.x <= platform.position.x + platform.width
+    ) {
+        player.speed.y =0
+    }
     
 }
 
