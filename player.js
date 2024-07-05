@@ -1,4 +1,4 @@
-import { ctx,} from './main.js';
+import { ctx,gravity, canvas} from './main.js';
 
 
 export class Player{ 
@@ -9,16 +9,43 @@ export class Player{
             x: 100,
             y:100
         }
+
+
+        // only in part 3 gravity
+        this.speed = {
+            x: 0,
+            // y:1
+             y:0
+        }
     }
 
 
     draw() {
         ctx.fillStyle = 'red';
-        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+        ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
+
+
+    // only in part 3 gravity
+    update() {  
+        this.draw();
+        this.position.y += this.speed.y;
+
+
+        // this.speed.y += gravity;
+        if (this.position.y+ this.height + this.speed.y <= canvas.height) {   
+            this.speed.y += gravity;
+        } else {
+            this.speed.y =0;
+        }
     }
 
 }
 
 
-const player = new Player();
-player.draw();
+export const player = new Player();
+
+// only in part 2 player
+// player.draw();
+// delete in part 3 gravity and create the animate function
+
