@@ -1,7 +1,7 @@
 import {  player,} from './player.js';
 import { ctx, canvas} from './main.js';
 import { keys } from './move.js';
-import {  platforms } from './bgs.js';
+import {  bg, hills, hills1, platforms } from './bgs.js';
 
 let scrollX = 0;
 
@@ -13,11 +13,14 @@ function animate() {
     ctx.clearRect(0,0,canvas.width,canvas.height);
     
     
+    bg.draw();
+    hills.draw();
     
     // platform.draw();
     platforms.forEach(p => {
         p.draw()
     })
+
     
     // תמיד שהפלאייר יהיה אחרון כדי שלא יהיה מאחורי הפלטפורמות
     player.update();
@@ -45,11 +48,13 @@ function animate() {
                 p.position.x -= 5;
             })
             scrollX += 5;
+            hills.position.x -=3
         } else if (keys.left.pressed) {
             platforms.forEach(p => {
                 p.position.x += 5;
             })
             scrollX -= 5;
+            hills.position.x +=3
         }
     }
 

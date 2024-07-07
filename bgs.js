@@ -55,3 +55,25 @@ export const platforms = [
     new Platform(1900, canvas.height-platformImg.height, platformImg),
     // new Platform(0, 100),
 ];
+
+
+class Bgs{
+    constructor(x,y, img){
+        this.img = img;
+        this.width = img.width
+        this.height =img.height
+
+        this.position={
+            x: x,
+            y: y,
+        }
+    }
+    draw() {
+        ctx.drawImage(this.img, this.position.x, this.position.y, this.width, this.height)
+        
+    }
+}
+
+export const bg = new Bgs(-1,-1 ,bgImg)
+export const hills = new Bgs(-1,-1 ,hillsImg)
+// export const hills1 = new Bgs(400,100 ,hillsImg)
