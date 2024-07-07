@@ -38,15 +38,20 @@ export class Player{
         // this.speed.y += gravity;
         if (this.position.y+ this.height + this.speed.y <= canvas.height) {   
             this.speed.y += gravity;
-        } else {
-            this.speed.y =0;
+
+
+         // זה משאיר את השחקן על הקנבס במקרה שהוא נופל.  מוחקים את זה בתנאי ההפסד
+        // } else {
+        //     this.speed.y =0;
+            
+        
         }
     }
 
 }
 
 
-export const player = new Player();
+// export let player = new Player();
 
 // only in part 2 player
 // player.draw();

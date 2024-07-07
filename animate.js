@@ -1,9 +1,37 @@
-import {  player,} from './player.js';
+import {  Player} from './player.js';
 import { ctx, canvas} from './main.js';
 import { keys } from './move.js';
-import {  bg, hills, hills1, platforms } from './bgs.js';
+import { bgImg, Bgs, hillsImg, Platform, platformImg } from './bgs.js';
+// import {  bg, bgImg, Bgs, hills,  platforms } from './bgs.js';
+
+
+// מעבירים לפה את הכל בפונקציית הINIT
+export let player = new Player();
+export let bg = new Bgs(-1,-1 ,bgImg)
+export let hills = new Bgs(-1, -1, hillsImg)
+export let platforms = [
+    new Platform(1000, 200, platformImg),
+    new Platform(-1, canvas.height-platformImg.height, platformImg),
+    new Platform(platformImg.width-3, canvas.height-platformImg.height, platformImg),
+    new Platform(1900, canvas.height-platformImg.height, platformImg),
+    // new Platform(0, 100),
+];
 
 let scrollX = 0;
+
+function init() {
+    scrollX = 0;
+    player = new Player();
+    hills = new Bgs(-1, -1, hillsImg)
+    bg = new Bgs(-1,-1 ,bgImg)
+    platforms = [
+    new Platform(1000, 200, platformImg),
+    new Platform(-1, canvas.height-platformImg.height, platformImg),
+    new Platform(platformImg.width-3, canvas.height-platformImg.height, platformImg),
+    new Platform(1900, canvas.height-platformImg.height, platformImg),
+    // new Platform(0, 100),
+    ];
+}
 
 
 function animate() { 
@@ -89,7 +117,18 @@ function animate() {
         // return
     }
     
+
+
+    // LOSE CONDITION
+
+    if (player.position.y > canvas.height) {
+        // alert('you lose!')
+        init();
+    }
+
 }
 
 
+
 animate();
+

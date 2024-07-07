@@ -1,18 +1,18 @@
 import { ctx, canvas} from './main.js';
-import { player } from './player.js';
+// import { player } from './player.js';
 
 
-const platformImg = new Image();
+export let platformImg = new Image();
 platformImg.src = '/img/platform.png'
 // console.log('platform:', platformImg.src)
-const bgImg = new Image();
+export let bgImg = new Image();
 bgImg.src = '/img/background.png'
-const hillsImg = new Image();
+export let hillsImg = new Image();
 hillsImg.src = '/img/hills.png'
-const smallImg = new Image();
+export let smallImg = new Image();
 smallImg.src = 'img/platformSmallTall.png';
 
-class Platform{
+export class Platform{
     // constructor(x,y){
 
     // only in part 8 image platform
@@ -48,16 +48,16 @@ class Platform{
 //     new Platform(600, canvas.height-player.height ),
 // ];
 
-export const platforms = [
-    new Platform(1000, 200, platformImg),
-    new Platform(-1, canvas.height-platformImg.height, platformImg),
-    new Platform(platformImg.width-3, canvas.height-platformImg.height, platformImg),
-    new Platform(1900, canvas.height-platformImg.height, platformImg),
-    // new Platform(0, 100),
-];
+// export let platforms = [
+//     new Platform(1000, 200, platformImg),
+//     new Platform(-1, canvas.height-platformImg.height, platformImg),
+//     new Platform(platformImg.width-3, canvas.height-platformImg.height, platformImg),
+//     new Platform(1900, canvas.height-platformImg.height, platformImg),
+//     // new Platform(0, 100),
+// ];
 
 
-class Bgs{
+export class Bgs{
     constructor(x,y, img){
         this.img = img;
         this.width = img.width
@@ -74,6 +74,6 @@ class Bgs{
     }
 }
 
-export const bg = new Bgs(-1,-1 ,bgImg)
-export const hills = new Bgs(-1,-1 ,hillsImg)
+// export let bg = new Bgs(-1,-1 ,bgImg)
+// export let hills = new Bgs(-1,-1 ,hillsImg)
 // export const hills1 = new Bgs(400,100 ,hillsImg)

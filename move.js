@@ -1,4 +1,6 @@
-import { player} from './player.js';
+// import { player} from './player.js';
+
+import { player } from "./animate.js";
 
 
 export const keys = {
