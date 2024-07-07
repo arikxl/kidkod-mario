@@ -3,6 +3,7 @@ import { ctx, canvas} from './main.js';
 import { keys } from './move.js';
 import { platform, platforms } from './bgs.js';
 
+let scrollX = 0;
 
 
 function animate() { 
@@ -37,17 +38,17 @@ function animate() {
         player.speed.x = -5;
     }else {
         player.speed.x = 0;
-
+        
         if (keys.right.pressed) {
-            // platform.position.x -= 5;
             platforms.forEach(p => {
                 p.position.x -= 5;
             })
+            scrollX += 5;
         } else if (keys.left.pressed) {
-            // platform.position.x += 5;
             platforms.forEach(p => {
                 p.position.x += 5;
             })
+            scrollX -= 5;
         }
     }
 
@@ -76,7 +77,10 @@ function animate() {
     })
 
 
-
+    // WIN CONDITION
+    if (scrollX > 1000) {
+        console.log('you win!')
+    }
     
 }
 
