@@ -1,4 +1,5 @@
 import { ctx, canvas} from './main.js';
+import { player } from './player.js';
 
 
 const platformImg = new Image();
@@ -36,4 +37,10 @@ class Platform{
 }
 
 export const platform = new Platform(200,canvas.height-200)
-// let platforms = [new Platform(0, 100)];
+export const platforms = [
+    new Platform(300, 200),
+    new Platform(200, canvas.height-200),
+    new Platform(0, canvas.height-player.height),
+    new Platform(600, canvas.height-player.height),
+    // new Platform(0, 100),
+];
