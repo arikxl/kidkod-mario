@@ -1,7 +1,7 @@
 import {  player,} from './player.js';
 import { ctx, canvas} from './main.js';
 import { keys } from './move.js';
-import { platform, platforms } from './bgs.js';
+import {  platforms } from './bgs.js';
 
 let scrollX = 0;
 
@@ -14,12 +14,13 @@ function animate() {
     
     
     
-    player.update();
     // platform.draw();
     platforms.forEach(p => {
         p.draw()
     })
-
+    
+    // תמיד שהפלאייר יהיה אחרון כדי שלא יהיה מאחורי הפלטפורמות
+    player.update();
 
     //  only in part 4 movment
     // if (keys.right.pressed) {
@@ -78,8 +79,9 @@ function animate() {
 
 
     // WIN CONDITION
-    if (scrollX > 1000) {
-        console.log('you win!')
+    if (scrollX > 2000) {
+        alert('you win!')
+        // return
     }
     
 }
