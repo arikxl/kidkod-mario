@@ -1,21 +1,15 @@
-import {  Player} from './player.js';
+import {  Player} from './player1.js';
 import { ctx, canvas} from './main.js';
 import { keys } from './move.js';
-import { bgImg, Bgs, hillsImg, Platform, platformImg } from './bgs.js';
+import { bgImg, Bgs, hillsImg, Platform, platformImg, smallImg } from './bgs.js';
 // import {  bg, bgImg, Bgs, hills,  platforms } from './bgs.js';
 
 
 // מעבירים לפה את הכל בפונקציית הINIT
-export let player = new Player();
-export let bg = new Bgs(-1,-1 ,bgImg)
-export let hills = new Bgs(-1, -1, hillsImg)
-export let platforms = [
-    new Platform(1000, 200, platformImg),
-    new Platform(-1, canvas.height-platformImg.height, platformImg),
-    new Platform(platformImg.width-3, canvas.height-platformImg.height, platformImg),
-    new Platform(1900, canvas.height-platformImg.height, platformImg),
-    // new Platform(0, 100),
-];
+export let player;
+export let bg;
+export let hills;
+export let platforms = [];
 
 let scrollX = 0;
 
@@ -28,7 +22,8 @@ function init() {
     new Platform(1000, 200, platformImg),
     new Platform(-1, canvas.height-platformImg.height, platformImg),
     new Platform(platformImg.width-3, canvas.height-platformImg.height, platformImg),
-    new Platform(1900, canvas.height-platformImg.height, platformImg),
+    new Platform(1900, canvas.height-smallImg.height, smallImg),
+    new Platform(1900+smallImg.width-2, canvas.height-platformImg.height, platformImg),
     // new Platform(0, 100),
     ];
 }
@@ -66,8 +61,14 @@ function animate() {
     // only in part 6 move background
     if (keys.right.pressed && player.position.x  < 400) {
         player.speed.x = 5;
-    } else if (keys.left.pressed && player.position.x >100) {
+    } else if (
+        (keys.left.pressed && player.position.x > 100)
+        // את התנאי השני להוסיף רק בטיפול בבאגים למנוע גלישה לצד שמאל
+        || (keys.left.pressed && scrollX ===0&&  player.position.x > 0)
+    
+    ) {
         player.speed.x = -5;
+
     }else {
         player.speed.x = 0;
         
@@ -77,7 +78,9 @@ function animate() {
             })
             scrollX += 5;
             hills.position.x -=3
-        } else if (keys.left.pressed) {
+            // } else if (keys.left.pressed) {
+            // להוסיף את התנאי השני רק בתיקון באגים
+        } else if (keys.left.pressed && scrollX > 0) {
             platforms.forEach(p => {
                 p.position.x += 5;
             })
@@ -85,6 +88,8 @@ function animate() {
             hills.position.x +=3
         }
     }
+
+    // בשלב 11 להחליף את ה5 במשתנה SPEED ואת ה3 למכפלה 0.66
 
 
 
@@ -112,7 +117,7 @@ function animate() {
 
 
     // WIN CONDITION
-    if (scrollX > 2000) {
+    if (scrollX > 30000) {
         alert('you win!')
         // return
     }
@@ -129,6 +134,9 @@ function animate() {
 }
 
 
+window.onload = () => {
+  init();
+  animate();
+};
 
-animate();
 
