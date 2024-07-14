@@ -19,9 +19,9 @@ function init() {
     scrollX = 0;
     player = new Player();
     goombas = [
-        new Goomba(700, 400, -0.4,0),
-        new Goomba(760, 400, -0.4,0),
-        new Goomba(820, 400, -0.4,0),
+        new Goomba(700, 400, -0.4,400),
+        new Goomba(760, 400, -0.4,250),
+        new Goomba(820, 400, -0.4,50),
     ]
 
     hills = new Bgs(-1, -1, hillsImg)

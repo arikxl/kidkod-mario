@@ -4,7 +4,7 @@ export let goombaImg = new Image();
 goombaImg.src = '/img/spriteGoomba.png'
 
 export class Goomba { 
-    constructor(x,y, speedX, speedY) {
+    constructor(x,y, speedX, limit ) {
         this.width = 43.33;
         this.height = 50;
         this.position = {
@@ -13,13 +13,14 @@ export class Goomba {
         }
         this.speed = {
             x: speedX,
-            y:speedY
+            y:0
         }
 
         this.frame = 0;
         this.cropWidth = 130 ;
 
-
+        this.traveled = 0;
+        this.limit = limit;
     }
 
 
@@ -45,6 +46,13 @@ export class Goomba {
             this.frame = 0
         }
 
+        // move side to side
+        this.traveled += Math.abs( this.speed.x);
+        if (this.traveled > this.limit) {
+            this.traveled = 0;
+            this.speed.x = -this.speed.x;
+        }
+
         // מעתיקים את זה מהשחקן בשביל כוח משיכה
         if (this.position.y + this.height + this.speed.y <= canvas.height) {
             this.speed.y += gravity;
@@ -52,6 +60,8 @@ export class Goomba {
         // else {
         //     this.speed.y = 0;
         // }
+
+
     
     }
 
